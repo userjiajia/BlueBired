@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all .3s;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#btn_box{
+    color: white;
+    border-radius: 4px;
+    background: #11aa8c;
+    border:1px solid #11aa8c;
+}
+.center{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text{
+overflow: hidden;
+-webkit-line-clamp: 1;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+}
+.til{
+    color:#333
+}
