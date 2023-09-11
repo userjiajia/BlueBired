@@ -1,6 +1,6 @@
 <template>
-  <ul class="flex course">
-    <li v-for="item in courseList" :key="item.courseid" class="flex">
+  <ul class="flex course"  v-if="courseList">
+    <li v-for="item in courseList" :key="item.courseid" class="flex courseList" ref="box">
         <img :src="item.courseimg" alt="">
         <div class="r">
             <p>{{ item.coursename }}</p>
@@ -14,20 +14,10 @@
 </template>
 
 <script>
-import { getCourseList } from '@/api/home'
 export default {
-  created () {
-    this.CourseList()
-  },
-  data () {
-    return {
-      courseList: []
-    }
-  },
-  methods: {
-    async CourseList () {
-      const { data } = await getCourseList()
-      this.courseList = data
+  computed: {
+    courseList () {
+      return this.$store.state.courseList
     }
   }
 }
@@ -35,14 +25,15 @@ export default {
 
 <style lang="less" scoped>
 .course{
+    margin-top: 40px;
     flex-wrap: wrap;
-    margin-top: 60px;
     li{
-        width: 299px;
+        width: 100%;
         height: 100px;
         border:1px solid #eee;
         border-radius: 4px;
         margin-top: 15px;
+        margin-left: 10px;
         img{
             border-radius: 4px;
         }
@@ -78,11 +69,27 @@ export default {
         }
     }
     li:hover{
-        box-shadow: 0px 5px 8px 5px #f0f0f0;
-        margin-top:10px;
+        box-shadow: 0px 5px 10px 8px #f0f0f0;
     }
     li:hover .detail{
         height: 64%;
     }
 }
+    @media screen and (min-width:768px) and (max-width:992px){
+        li{
+            width: 100% !important;
+        }
+    }
+    /* 大 */
+    @media screen and (min-width:992px) and (max-width:1200px){
+        li{
+            width: 45% !important;
+        }
+    }
+    /* 超大 */
+    @media screen and (min-width:1200px){
+        li{
+            width: 45% !important;
+        }
+    }
 </style>

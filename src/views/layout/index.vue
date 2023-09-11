@@ -2,57 +2,72 @@
   <div class="header">
     <nav class="tab">
         <div class="nav flex">
-          <div class="flex">
+          <div class="flex nav1">
             <router-link to="/" class="flex"><img src="http://101.42.50.205/bluebird/images/index/bluebird_logo.png" alt=""></router-link>
-            <router-link to="/subject">课程</router-link>
-            <router-link to="/path">路径</router-link>
-            <router-link to="/talk">讨论区</router-link>
+            <router-link to="/course/courseList">课程</router-link>
+            <router-link to="/course/path">路径</router-link>
+            <router-link to="/course/talk">讨论区</router-link>
             <router-link to="/xunL">训练营</router-link>
             <router-link to="/vip">会员</router-link>
           </div>
+          <div class="flex nav2">
+            哈哈
+          </div>
           <div class="right flex">
             <el-input placeholder="搜索 课程/问答" class="input" size="small" clearable v-model="search"></el-input>
-            <button class="btn" @click="dialogFormVisible=true">登录</button>
-            <button class="btn" id="btn_box">注册</button>
+            <button class="btn" @click="login">登录</button>
+            <button class="btn" id="btn_box" @click="reg">注册</button>
           </div>
-          <!-- 登录注册框 -->
-            <el-dialog :visible.sync="dialogFormVisible" center class="dialog">
-                <span>登录</span>
-                <span>注册</span>
-                <form action="">
-                  <input type="text">
-                </form>
-              <div slot="footer" class="dialog-footer" >
-                <el-button type="primary" @click="dialogFormVisible = false">注册并领取免费课程</el-button>
-              </div>
-          </el-dialog>
         </div>
     </nav>
-    <router-view></router-view>
+    <!-- 登录注册框 -->
+    <AlertLogin :isLogin.sync="isLogin" :type.sync="type"></AlertLogin>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <script>
+import AlertLogin from '@/components/Alertlogin.vue'
 export default {
   name: 'layoutIndex',
   data () {
     return {
       search: '',
       dialogFormVisible: false,
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      isLogin: false,
+      type: 'login'
     }
   },
+  components: {
+    AlertLogin
+  },
   methods: {
-
+    login () {
+      this.dialogFormVisible = true
+      this.isLogin = true
+      this.type = 'login'
+    },
+    reg () {
+      this.isLogin = true
+      this.type = 'reg'
+    }
   }
 }
 </script>
 
 <style scoped lang="less">
 // nav
+.nav2{
+  display: none;
+}
 nav.tab{
   height: 50px;
   background: #191e29;
+  position: fixed;
+  z-index:3;
+
+  width: 100%;
   .nav{
     width: 80%;
     margin: 0 auto;
@@ -89,4 +104,17 @@ nav.tab{
     }
   }
 }
+@media screen and (min-width:468px) and (max-width:1000px){
+  .nav1{
+    display: none;
+  }
+  .nav2{
+    display: flex;
+  }
+}
+/* 大 */
+@media screen and (min-width:992px) and (max-width:1200px){
+
+}
+
 </style>

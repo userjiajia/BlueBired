@@ -22,7 +22,9 @@
     <courseList class="center"></courseList>
     <el-divider content-position="center" class="center split split2">实习课程</el-divider>
     <!-- 教程 -->
-    <studyList class="center study" :StudyList="StudyList"></studyList>
+    <ul class="flex study2 center">
+      <studyList class="center study" v-for="item in  StudyList" :key="item.courseid" :StudyList="item"></studyList>
+    </ul>
   </div>
 </template>
 
@@ -30,7 +32,6 @@
 import betterHome from '@/components/betterHome.vue'
 import courseList from '@/components/courseList.vue'
 import studyList from '@/components/studyList.vue'
-import { getStudyList } from '@/api/home'
 
 export default {
   name: 'homePage',
@@ -43,17 +44,12 @@ export default {
     return {
       name: '', // 表单信息
       phone: '', // 表单信息
-      pwd: '', // 表单信息
-      StudyList: [] // 学习课程
+      pwd: '' // 表单信息
     }
   },
-  created () {
-    this.getStudyFn()
-  },
-  methods: {
-    async getStudyFn () {
-      const { data: { data } } = await getStudyList('1', '4', 'all', 'Web前端')
-      this.StudyList = data
+  computed: {
+    StudyList () {
+      return this.$store.state.StudyList
     }
   }
 
@@ -122,5 +118,9 @@ export default {
 }
 .study{
     margin: 60px auto;
+}
+.study2{
+    flex-wrap: wrap;
+    justify-content: start;
 }
 </style>
