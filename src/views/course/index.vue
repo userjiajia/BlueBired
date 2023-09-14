@@ -41,11 +41,11 @@ export default {
   padding-bottom: 60px;
 }
 .right{
-  flex:1;
+  width: 70%;
   margin-top: 80px;
 }
 .left{
-  width: 280px;
+  width: 25%;
   margin-left: 30px;
   margin-top: 80px;
   .info{
@@ -54,7 +54,7 @@ export default {
     border-radius: 4px;
     padding-bottom: 20px;
     img{
-      width:249px;
+      width:80%;
       height:80px;
       box-sizing: content-box;
       padding: 16px 10px;

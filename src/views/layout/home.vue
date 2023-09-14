@@ -51,6 +51,10 @@ export default {
     StudyList () {
       return this.$store.state.StudyList
     }
+
+  },
+  created () {
+    this.$store.dispatch('CourseList')
   }
 
 }

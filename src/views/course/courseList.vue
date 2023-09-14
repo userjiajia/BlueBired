@@ -52,9 +52,9 @@ export default {
     Page
   },
   computed: {
-    StudyList () {
-      return this.$store.state.StudyList2
-    },
+    // StudyList () {
+    //   return this.$store.state.StudyList2
+    // },
     total () { // 页数
       let num = Math.ceil(this.$store.state.total / this.pagesize)
       if (num < 1)num = 1

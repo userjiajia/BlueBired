@@ -21,13 +21,12 @@
         </div>
     </nav>
     <!-- 登录注册框 -->
-    <AlertLogin :isLogin.sync="isLogin" :type.sync="type"></AlertLogin>
-    <!-- <router-view></router-view> -->
+    <AlertLogin :isLogin.sync="isLogin"></AlertLogin>
   </div>
 </template>
 
 <script>
-import AlertLogin from '@/components/Alertlogin.vue'
+import AlertLogin from './components/Alertlogin.vue'
 export default {
   name: 'layoutIndex',
   data () {
@@ -35,22 +34,23 @@ export default {
       search: '',
       dialogFormVisible: false,
       formLabelWidth: '120px',
-      isLogin: false,
-      type: 'login'
+      isLogin: false
     }
   },
   components: {
     AlertLogin
   },
+  computed: {
+  },
   methods: {
     login () {
       this.dialogFormVisible = true
       this.isLogin = true
-      this.type = 'login'
+      this.$store.commit('setLoginType', 'login')
     },
     reg () {
       this.isLogin = true
-      this.type = 'reg'
+      this.$store.commit('setLoginType', 'reg')
     }
   }
 }

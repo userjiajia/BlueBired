@@ -74,7 +74,7 @@ export default {
     /* 超大 */
     @media screen and (min-width:1200px){
         li{
-            width: 253px;
+            width: 243px;
         }
     }
 

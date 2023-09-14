@@ -14,11 +14,13 @@ export default new Vuex.Store({
     talkTotal: 0,
     total: 0,
     xunList: [],
-    CourseId: []
-  },
-  getters: {
+    CourseId: [],
+    loginType: 'login'
   },
   mutations: {
+    setLoginType (state, val) {
+      state.loginType = val
+    },
     StudyList (state, NewList) {
       state.StudyList = NewList
     },
@@ -49,17 +51,16 @@ export default new Vuex.Store({
       const { page, pagesize, type, tag } = obj
       const { data: { data, total } } = await getStudyList(page, pagesize, type, tag)
       // const { data } = await getStudyList(page, pagesize, type, tag)
-      // console.log(data)
       if (pagesize === '4') {
-        context.commit('StudyList', data)
+        context.commit('StudyList', data || [])
       } else {
-        context.commit('StudyList2', data)
+        context.commit('StudyList2', data || [])
         context.commit('setTotal', total)
       }
     },
     async CourseList (context) {
       const { data: { data } } = await getCourseList()
-      context.commit('courseList', data)
+      context.commit('courseList', data || [])
     },
     async getTalkList (context, obj) {
       const { page, pagesize } = obj
